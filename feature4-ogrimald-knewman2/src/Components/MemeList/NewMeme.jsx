@@ -11,7 +11,7 @@ export default function NewMeme({ onAddMeme }) {
 
     try {
       await onAddMeme(name, era, url);
-      // Clear the form after submission
+      //clear form after submission
       setName("");
       setEra("");
       setUrl("");

@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { createMeme, getAllMemes } from "../../Services/Memes.jsx";
-import MemeEntry from "./MemeEntry.jsx"; // Child component
-import NewMeme from "./NewMeme.jsx"; // Import the NewMeme component
+import MemeEntry from "./MemeEntry.jsx";
+import NewMeme from "./NewMeme.jsx";
 
 export default function MemeList() {
   const [memes, setMemes] = useState([]);
 
-  // Fetch memes when the component mounts
+  //get memes when the component mounts
   useEffect(() => {
     async function fetchMemes() {
       try {
@@ -19,15 +19,15 @@ export default function MemeList() {
     fetchMemes();
   }, []);
 
-  // Function to add a new meme (called from the NewMeme child component)
+  //add a new meme (called from the NewMeme child component)
   const handleAddMeme = async (name, era, url) => {
     try {
-      // Create meme using the service function
+      //create meme object for new meme
       const newMeme = await createMeme(name, era, url);
 
-      // Fetch the updated list of memes
+      //fetch current memes
       const data = await getAllMemes();
-      setMemes(data);  // Update the memes state with the new meme included
+      setMemes(data);  //update the memes state with the new meme included
     } catch (error) {
       console.error("Error creating meme:", error);
     }

@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { createGame, getAllGames } from "../../Services/Games.jsx";
-import GameEntry from "./GameEntry.jsx"; // Child component
-import NewGame from "./NewGame.jsx"; // Import the NewGame component
+import GameEntry from "./GameEntry.jsx";
+import NewGame from "./NewGame.jsx";
 
 export default function GameList() {
   const [games, setGames] = useState([]);
 
-  // Fetch games when the component mounts
+  //fetch games when the component mounts
   useEffect(() => {
     async function fetchGames() {
       try {
@@ -19,7 +19,7 @@ export default function GameList() {
     fetchGames();
   }, []);
 
-  // Function to add a new game (called from the NewGame child component)
+  //function to add a new game (called from the NewGame child component)
   const handleAddGame = async (name, score, memeBank) => {
     try {
       // Create game using the service function

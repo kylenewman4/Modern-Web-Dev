@@ -9,6 +9,7 @@ const Env = {
 Parse.initialize(Env.APPLICATION_ID, Env.JAVASCRIPT_KEY);
 Parse.serverURL = Env.SERVER_URL;
 
+//simple get all existing meme function
 export function getAllMemes() {
   const meme = Parse.Object.extend("Meme");
   const query = new Parse.Query(meme);
@@ -23,6 +24,7 @@ export function getAllMemes() {
   });
 }
 
+//simple create new meme function
 export async function createMeme(name, era, url) {
     const Meme = Parse.Object.extend("Meme");
     const meme = new Meme();
