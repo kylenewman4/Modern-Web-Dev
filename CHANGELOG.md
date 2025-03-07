@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 Added all components for Feature 4.
  
 ### Added
+- Added back4app database backend
 - UML Diagram
 - Component Tree Diagram
 - Added Game object, components, services
@@ -21,5 +22,22 @@ Added all components for Feature 4.
  
 ### Fixed
  
-- NewGame and NewMeme forms now function with database.
+- NewGame and NewMeme forms now function properly with database.
+- NewGame Meme pointers will now point properly to a default option in the form.
  
+
+## [0.1.0] - 2025-02-20
+  
+Added all original components for Feature 3. This update was not released on GitHub, but on codesandbox.io.
+ 
+### Added
+- Added Meme object, components, and services
+- Added README.md
+- Added Meme form creation
+- Added Meme JSON object/parsing
+
+### Changed
+ 
+### Fixed
+ 
+- NewGame and NewMeme forms now function with database.
