@@ -11,8 +11,8 @@ Added all components for Feature 4.
  
 ### Added
 - Added back4app database backend
-- UML Diagram
-- Component Tree Diagram
+- Added UML Diagram
+- Added Component Tree Diagram
 - Added Game object, components, services
 
 ### Changed
