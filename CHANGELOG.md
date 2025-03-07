@@ -1,6 +1,6 @@
 
 # Change Log
-All notable changes to this project will be documented in this file.
+All notable changes to our Meme Word Games project will be updated in this file.
  
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
