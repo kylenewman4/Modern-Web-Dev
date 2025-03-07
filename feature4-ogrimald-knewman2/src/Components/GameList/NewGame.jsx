@@ -10,11 +10,13 @@ export default function NewGame({ onAddGame }) {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    // Fetch all memes when the component mounts
     async function fetchMemes() {
       try {
         const data = await getAllMemes();
         setMemes(data);
+        if (data.length > 0) {
+          setSelectedMemes([data[0]]); // Set first meme as default
+        }
       } catch (error) {
         console.error("Error fetching memes:", error);
       }
