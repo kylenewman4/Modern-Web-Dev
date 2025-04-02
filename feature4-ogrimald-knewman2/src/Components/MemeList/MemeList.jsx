@@ -35,6 +35,7 @@ export default function MemeList() {
 
   return (
     <div className="home-content">
+      <button>Logout</button>
       <h1>Meme List</h1>
       <p>Listing every meme database entry loaded from back4app. Create new memes with the form below, and they are automatically added to the database.</p>
 
