@@ -9,8 +9,8 @@ import { BrowserRouter as Router, Route, Routes} from "react-router-dom";
 export default function Components () {
     return (
         <Routes>
-            <Route path="/auth" element={<AuthModule />} />
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<AuthModule />} />
+            <Route path="/home" element={<Home />} />
             <Route path="/memes" element={<MemeList />} />
             <Route path="/games" element={<GameList />} />
         </Routes>
