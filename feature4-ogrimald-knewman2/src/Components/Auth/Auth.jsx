@@ -1,18 +1,22 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { checkUser } from "./AuthService";
+import Parse from "parse";
 
 const AuthModule = () => {
   const navigate = useNavigate();
 
-  // redirect already authenticated users back to home
   useEffect(() => {
-    if (checkUser()) {
-      alert("You are already logged in");
-      navigate("/auth");
+    async function resetAuthState() {
+      try {
+        await Parse.User.logOut(); // Logs out any existing user
+      } catch (error) {
+        console.error("Error logging out user:", error);
+      }
     }
-  }, [navigate]);
+
+    resetAuthState();
+  }, []);
 
   return (
     <div>

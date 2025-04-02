@@ -2,9 +2,14 @@ import React, { useEffect, useState } from "react";
 import { createGame, getAllGames } from "../../Services/Games.jsx";
 import GameEntry from "./GameEntry.jsx";
 import NewGame from "./NewGame.jsx";
+import Parse from "parse";
 
 export default function GameList() {
   const [games, setGames] = useState([]);
+
+  const handleLogout = () => {
+    navigate("/auth");
+  };
 
   //fetch games when the component mounts
   useEffect(() => {
@@ -35,7 +40,7 @@ export default function GameList() {
 
   return (
     <div className="home-content">
-      <button>Logout</button>
+      <button onClick={handleLogout}>Logout</button>
       <h1>Game List</h1>
       <p>Listing every game database entry loaded from back4app. Meme solutions are automatically loaded from all Meme objects in the database.</p>
 

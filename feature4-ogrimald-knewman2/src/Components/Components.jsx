@@ -16,9 +16,9 @@ export default function Components () {
             <Route path="/auth" element={<AuthModule />} />
             <Route path="/auth/register" element={<AuthRegister />} />
             <Route path="/auth/login" element={<AuthLogin />} />
-            <Route path="/home" element={<ProtectedRoute path="/home" element={<Home />} />}/>
-            <Route path="/memes" element={<ProtectedRoute path="/memes" element={<MemeList />} />}/>
-            <Route path="/games" element={<ProtectedRoute path="/games" element={<GameList />} />}/>
+            <Route path="/home" element={<ProtectedRoute path="/home" element={Home} />}/>
+            <Route path="/memes" element={<ProtectedRoute path="/memes" element={MemeList} />}/>
+            <Route path="/games" element={<ProtectedRoute path="/games" element={GameList} />}/>
         </Routes>
     )
 }

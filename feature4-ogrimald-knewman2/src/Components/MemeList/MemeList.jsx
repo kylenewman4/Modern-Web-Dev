@@ -2,9 +2,14 @@ import React, { useEffect, useState } from "react";
 import { createMeme, getAllMemes } from "../../Services/Memes.jsx";
 import MemeEntry from "./MemeEntry.jsx";
 import NewMeme from "./NewMeme.jsx";
+import Parse from "parse";
 
 export default function MemeList() {
   const [memes, setMemes] = useState([]);
+
+  const handleLogout = () => {
+    navigate("/auth");
+  };
 
   //get memes when the component mounts
   useEffect(() => {
@@ -35,7 +40,7 @@ export default function MemeList() {
 
   return (
     <div className="home-content">
-      <button>Logout</button>
+      <button onClick={handleLogout}>Logout</button>
       <h1>Meme List</h1>
       <p>Listing every meme database entry loaded from back4app. Create new memes with the form below, and they are automatically added to the database.</p>
 
