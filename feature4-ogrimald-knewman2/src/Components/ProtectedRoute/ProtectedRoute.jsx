@@ -8,7 +8,6 @@ const ProtectedRoute = ({ element: Component, ...rest }) => {
   const navigate = useNavigate();
   // button logic, returns to auth page
   const goBackHandler = () => {
-    Parse.User.logOut();
     navigate("/auth");
   };
   // only allow user to enter home/meme/games page if authenticated
