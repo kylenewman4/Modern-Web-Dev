@@ -1,4 +1,4 @@
-# Feature 4: Meme Word Games by Owen Grimaldi (ogrimald@nd.edu) and Kyle Newman (knewman2@nd.edu)
+# Feature 5: Meme Word Games by Owen Grimaldi (ogrimald@nd.edu) and Kyle Newman (knewman2@nd.edu)
 
 ### Setup
 To setup this demo, simply download the latest release and navigate to the "feature4-ogrimald-knewman2" Vite project folder.
