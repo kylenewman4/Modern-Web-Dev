@@ -17,7 +17,7 @@ Added all components for Feature 5.
 ### Changed
   
 - Updated README.md
-- Initial page upon loading is registration / login
+- Initial page upon loading is registration / login (auth page)
 - Logout feature added throughout site
  
 ### Fixed
