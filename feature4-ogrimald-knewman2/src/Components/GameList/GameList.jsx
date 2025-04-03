@@ -3,12 +3,20 @@ import { createGame, getAllGames } from "../../Services/Games.jsx";
 import GameEntry from "./GameEntry.jsx";
 import NewGame from "./NewGame.jsx";
 import Parse from "parse";
+import { useNavigate } from "react-router-dom";
 
 export default function GameList() {
   const [games, setGames] = useState([]);
 
-  const handleLogout = () => {
-    navigate("/auth");
+  const navigate = useNavigate();
+  const handleLogout = async () => {
+    try {
+        await Parse.User.logOut(); // Log out the user
+        navigate("/auth"); // Redirect to the auth page after logging out
+    } catch (error) {
+        console.error("Error logging out:", error);
+        alert("There was an error logging out. Please try again.");
+    }
   };
 
   //fetch games when the component mounts

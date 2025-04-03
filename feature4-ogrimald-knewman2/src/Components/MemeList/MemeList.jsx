@@ -3,12 +3,20 @@ import { createMeme, getAllMemes } from "../../Services/Memes.jsx";
 import MemeEntry from "./MemeEntry.jsx";
 import NewMeme from "./NewMeme.jsx";
 import Parse from "parse";
+import { useNavigate } from "react-router-dom";
 
 export default function MemeList() {
   const [memes, setMemes] = useState([]);
 
-  const handleLogout = () => {
-    navigate("/auth");
+  const navigate = useNavigate();
+  const handleLogout = async () => {
+    try {
+        await Parse.User.logOut(); // Log out the user
+        navigate("/auth"); // Redirect to the auth page after logging out
+    } catch (error) {
+        console.error("Error logging out:", error);
+        alert("There was an error logging out. Please try again.");
+    }
   };
 
   //get memes when the component mounts

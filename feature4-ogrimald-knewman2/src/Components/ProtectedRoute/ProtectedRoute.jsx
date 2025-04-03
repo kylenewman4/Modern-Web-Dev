@@ -7,6 +7,7 @@ const ProtectedRoute = ({ element: Component, ...rest }) => {
   console.log("element: ", Component);
   const navigate = useNavigate();
   const goBackHandler = () => {
+    Parse.User.logOut();
     navigate("/auth");
   };
   if (checkUser()) {
