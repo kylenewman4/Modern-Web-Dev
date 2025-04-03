@@ -4,7 +4,25 @@ All notable changes to our Meme Word Games project will be updated in this file.
  
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
+
+## [0.3.0] - 2025-04-02
+  
+Added all components for Feature 5.
  
+### Added
+- Registration / Login / Logout implemented and connected to back4app database
+- Added authentication module, where users must be logged in to access various parts of site
+- Added protected routes to ensure unauthenticated users cannot access authenticated-only pages
+
+### Changed
+  
+- Updated README.md
+- Initial page upon loading is registration / login
+- Logout feature added throughout site
+ 
+### Fixed
+
+
 ## [0.2.0] - 2025-03-07
   
 Added all components for Feature 4.
