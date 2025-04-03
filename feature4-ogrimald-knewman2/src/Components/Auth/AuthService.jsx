@@ -40,6 +40,7 @@ export const loginUser = (currUser) => {
     });
 };
 
+// check if user is currently authenticated, i.e. registered and logged in. function used throughout to see if authentication access should/shouldn't be granted
 export const checkUser = () => {
   return Parse.User.current()?.authenticated;
 };

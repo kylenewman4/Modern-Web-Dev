@@ -9,10 +9,11 @@ export default function GameList() {
   const [games, setGames] = useState([]);
 
   const navigate = useNavigate();
+  // Logout button logic -- log out user and redirect them to auth
   const handleLogout = async () => {
     try {
-        await Parse.User.logOut(); // Log out the user
-        navigate("/auth"); // Redirect to the auth page after logging out
+        await Parse.User.logOut();
+        navigate("/auth");
     } catch (error) {
         console.error("Error logging out:", error);
         alert("There was an error logging out. Please try again.");

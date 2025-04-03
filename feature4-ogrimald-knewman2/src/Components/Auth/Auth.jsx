@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { checkUser } from "./AuthService";
 
+// Auth (index) page of site. Upon entering site, user is prompted to register or login for authentication into site features. 
 const AuthModule = () => {
   const navigate = useNavigate();
 

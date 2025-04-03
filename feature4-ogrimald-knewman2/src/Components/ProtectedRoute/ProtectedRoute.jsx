@@ -6,13 +6,15 @@ import { checkUser } from "../Auth/AuthService";
 const ProtectedRoute = ({ element: Component, ...rest }) => {
   console.log("element: ", Component);
   const navigate = useNavigate();
+  // button logic, returns to auth page
   const goBackHandler = () => {
     Parse.User.logOut();
     navigate("/auth");
   };
+  // only allow user to enter home/meme/games page if authenticated
   if (checkUser()) {
     return <Component />;
-  } else {
+  } else { // render the prompt to go back
     return (
       <div>
         <p>Unauthorized!</p> <button onClick={goBackHandler}>Go Back.</button>

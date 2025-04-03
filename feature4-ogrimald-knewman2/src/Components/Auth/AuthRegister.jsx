@@ -3,6 +3,7 @@ import { checkUser, createUser } from "./AuthService";
 import AuthForm from "./AuthForm";
 import { useNavigate } from "react-router-dom";
 
+// Logic for registration page
 const AuthRegister = () => {
   const navigate = useNavigate();
 
