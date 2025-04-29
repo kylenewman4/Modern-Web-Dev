@@ -14,9 +14,6 @@ const Header = () => {
               <Link className="nav-link text-white custom-hover" to="/memes">Meme List</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link text-white custom-hover" to="/games">Game List</Link>
-            </li>
-            <li className="nav-item">
               <Link className="nav-link text-white custom-hover" to="/crossword">Crossword</Link>
             </li>
             <li className="nav-item">
