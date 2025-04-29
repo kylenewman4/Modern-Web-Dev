@@ -9,6 +9,7 @@ import AuthLogin from "./Auth/AuthLogin.jsx";
 import ProtectedRoute from "./ProtectedRoute/ProtectedRoute.jsx";
 import { BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import CrosswordGame from "./Crossword/Crossword.jsx";
+import Leaderboard from "./Leaderboard/Leaderboard.jsx";
 
 export default function Components () {
     return (
@@ -22,6 +23,7 @@ export default function Components () {
             <Route path="/games" element={<ProtectedRoute path="/games" element={GameList} />}/>
             <Route path="/hangman" element={<ProtectedRoute path="/hangman" element={Hangman} />} />
             <Route path="/crossword" element={<ProtectedRoute path="/crossword" element={CrosswordGame} />}/>
+            <Route path="/leaderboard" element={<ProtectedRoute path="/leaderboard" element={Leaderboard} />} />
         </Routes>
     )
 }

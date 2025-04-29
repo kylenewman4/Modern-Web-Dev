@@ -22,6 +22,9 @@ const Header = () => {
             <li className="nav-item">
               <Link className="nav-link text-white custom-hover" to="/hangman">Hangman</Link>
             </li>
+            <li className="nav-item">
+              <Link className="nav-link text-white custom-hover" to="/leaderboard">Leaderboard</Link>
+            </li>
           </ul>
         </nav>
       </div>
