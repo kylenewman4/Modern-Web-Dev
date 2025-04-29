@@ -1,9 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { getAllGames } from "../../Services/Games.jsx"; // Import the Games service
+import { useNavigate } from "react-router-dom";
+import Parse from "parse";
 
 const Leaderboard = () => {
   const [games, setGames] = useState([]);
   const [error, setError] = useState(null);
+
+  const navigate = useNavigate();
+    
+  // Logout button logic -- log out user and redirect them to auth
+  const handleLogout = async () => {
+    try {
+      await Parse.User.logOut();
+      navigate("/auth");
+    } catch (error) {
+      console.error("Error logging out:", error);
+      alert("There was an error logging out. Please try again.");
+    }
+  };
 
   useEffect(() => {
     // Fetch all games from the database and handle errors
@@ -28,6 +43,8 @@ const Leaderboard = () => {
   }
 
   return (
+    <div className="mt-3 px-3">
+    <button className="btn btn-danger float-right" onClick={handleLogout}>Logout</button>
     <div className="container mt-4">
       <h2 className="text-center">Leaderboard (All Games)</h2>
       <table className="table table-striped table-bordered table-hover">
@@ -56,6 +73,7 @@ const Leaderboard = () => {
           )}
         </tbody>
       </table>
+    </div>
     </div>
   );
 };
