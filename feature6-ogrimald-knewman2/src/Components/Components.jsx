@@ -7,7 +7,6 @@ import AuthModule from "./Auth/Auth.jsx";
 import AuthRegister from "./Auth/AuthRegister.jsx";
 import AuthLogin from "./Auth/AuthLogin.jsx";
 import ProtectedRoute from "./ProtectedRoute/ProtectedRoute.jsx";
-
 import { BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import CrosswordGame from "./Crossword/Crossword.jsx";
 
