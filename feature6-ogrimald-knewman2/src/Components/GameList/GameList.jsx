@@ -48,8 +48,8 @@ export default function GameList() {
   };
 
   return (
-    <div className="home-content">
-      <button onClick={handleLogout}>Logout</button>
+    <div className="mt-3 px-3">
+      <button className="btn custom-btn float-right" onClick={handleLogout}>Logout</button>
       <h1>Game List</h1>
       <p>Listing every game database entry loaded from back4app. Meme solutions are automatically loaded from all Meme objects in the database.</p>
 
