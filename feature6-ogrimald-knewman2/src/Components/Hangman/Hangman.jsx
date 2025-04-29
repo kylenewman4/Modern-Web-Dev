@@ -69,7 +69,10 @@ function Hangman({ maxWrong = 6 }) {
       <p>Number Wrong: {nWrong}</p>
 
       {answer === guessedWord().join("") ? (
-        <p>You WIN!</p>
+        <div>
+          <p>You WIN!</p>
+          <p>Correct Word is: {answer}</p>
+        </div>
       ) : (
         nWrong === maxWrong ? (
           <div>
