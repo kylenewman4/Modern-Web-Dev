@@ -33,7 +33,7 @@ export default function Home() {
 
             <div className="d-flex justify-content-center mb-4">
                 <button 
-                    className="btn btn-danger btn-lg"
+                    className="btn btn-danger"
                     onClick={handleLogout}
                 >
                     Logout

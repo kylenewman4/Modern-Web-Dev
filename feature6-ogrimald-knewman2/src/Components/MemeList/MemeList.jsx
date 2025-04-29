@@ -86,6 +86,8 @@ export default function MemeList() {
   return (
     <div className="mt-3 px-3">
       <button className="btn btn-danger float-right" onClick={handleLogout}>Logout</button>
+    <div className="container text-center mt-4">
+      
       
       <h1>Meme List</h1>
       <p>
@@ -140,6 +142,7 @@ export default function MemeList() {
           <p>No memes match the selected filters.</p>
         )}
       </div>
+    </div>
     </div>
   );
 }
