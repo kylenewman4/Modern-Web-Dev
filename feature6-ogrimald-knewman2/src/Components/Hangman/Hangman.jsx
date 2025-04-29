@@ -99,12 +99,12 @@ function Hangman({ maxWrong = 6 }) {
   }
 
   return (
-    <div className="container mt-5">
-      <button className="btn btn-danger btn-sm float-end mb-4" onClick={handleLogout}>
+    <div className="mt-3 px-3">
+      <button className="btn btn-danger float-right" onClick={handleLogout}>
         Logout
       </button>
 
-      <h1 className="text-center mb-4">Hangman</h1>
+      <h1>Hangman</h1>
 
       {/* Hangman image */}
       <div className="text-center">

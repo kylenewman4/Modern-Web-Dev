@@ -3,6 +3,7 @@ import Crossword from "@jaredreisinger/react-crossword";
 import { createGame } from "../../Services/Games.jsx";
 import { getAllMemes } from "../../Services/Memes.jsx";
 import Parse from "parse";
+import { useNavigate } from "react-router-dom";
 
 // Function to find intersections between words
 const findIntersection = (grid, word, position, direction) => {
@@ -102,6 +103,19 @@ export default function CrosswordGame() {
     const [startTime, setStartTime] = useState(null); // Track the start time
     const [playerName, setPlayerName] = useState(""); // Track the signed-in player's name
     const crosswordRef = useRef();
+
+    const navigate = useNavigate();
+  
+    // Logout button logic -- log out user and redirect them to auth
+    const handleLogout = async () => {
+      try {
+        await Parse.User.logOut();
+        navigate("/auth");
+      } catch (error) {
+        console.error("Error logging out:", error);
+        alert("There was an error logging out. Please try again.");
+      }
+    };
   
     // Fetch the signed-in player's name (e.g., using Parse)
     useEffect(() => {
@@ -233,7 +247,9 @@ export default function CrosswordGame() {
     if (error) return <p style={{ color: "red" }}>{error}</p>;
   
     return (
-        <div className="container mt-5">
+        <div className="mt-3 px-3">
+          <button className="btn btn-danger float-right" onClick={handleLogout}>Logout</button>
+          <h1>Crossword</h1>
           <div className="text-center mb-4">
             <h2>{playerName ? `${playerName}'s Crossword` : "Crossword Game"}</h2>
             <div className="mb-3">
