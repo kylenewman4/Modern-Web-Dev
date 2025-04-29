@@ -1,62 +1,65 @@
 :root {
-    --light-teal: #a0e7e5;
-    --dark-teal: #007f8c;
-  }
-  
-  body {
-    background-color: var(--light-teal);
-    font-family: 'Roboto', sans-serif;
-    margin: 0;
-    padding: 0;
-  }
-  
-  header {
-    background-color: var(--dark-teal);
-    padding: 1rem;
-    color: white;
-  }
-  
-  header h2 {
-    margin: 0;
-  }
-  
-  nav ul {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    gap: 1rem;
-  }
-  
-  nav li {
-    display: inline;
-  }
-  
-  nav a {
-    color: white;
-    text-decoration: none;
-  }
-  
-  button {
-    margin: 0.5rem;
-  }
+  --light-teal: #a0e7e5;
+  --dark-teal: #007f8c;
+}
+ body {
+  background-color: var(--light-teal);
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+ header {
+  background-color: var(--dark-teal);
+  padding: 1rem;
+  color: white;
+}
+ header h2 {
+  margin: 0;
+}
+ nav ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap: 1rem;
+}
+ nav li {
+  display: inline;
+}
+ nav a {
+  color: white;
+  text-decoration: none;
+}
+ button {
+  margin: 0.5rem;
+}
 
-  .custom-hover:hover {
-    color: orange !important; /* Turns the link orange on hover */
-  }
-  
-  header .nav-link {
-    transition: color 0.3s ease;
-  }
 
-  .custom-btn {
-    background-color: var(--dark-teal);
-    color: white;
-    border-radius: 5px;
-    padding: 5px 10px;
-    transition: background-color 0.3s;
-  }
+.custom-hover:hover {
+  color: orange !important; /* Turns the link orange on hover */
+}
+ header .nav-link {
+  transition: color 0.3s ease;
+}
 
-  .custom-btn:hover {
-    background-color: orange;
-    color: white;
-  }
+
+.custom-btn {
+  background-color: var(--dark-teal);
+  color: white;
+  border-radius: 5px;
+  padding: 5px 10px;
+  transition: background-color 0.3s;
+}
+
+
+.custom-btn:hover {
+  background-color: orange;
+  color: white;
+}
+
+
+.hangman-word {
+  letter-spacing: 1em;
+  margin: 0.4em -1em 0.2em 0;
+  font-size: 2rem;
+  text-align: center;
+}
