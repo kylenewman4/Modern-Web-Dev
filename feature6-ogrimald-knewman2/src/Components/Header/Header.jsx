@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 const Header = () => {
   return (
     <header className="bg-dark text-white py-3">
-      <div className="container d-flex justify-content-between align-items-center">
+      <div className="d-flex justify-content-between align-items-center">
         {/* Logo or Header Title */}
         <h2 className="m-0">Meme Word Games</h2>
 
