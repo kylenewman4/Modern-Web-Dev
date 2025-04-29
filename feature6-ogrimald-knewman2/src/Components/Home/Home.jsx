@@ -19,14 +19,7 @@ export default function Home() {
     return (
         <div className="container mt-5">
             {/* Center the Logout button */}
-            <div className="d-flex justify-content-center mb-4">
-                <button 
-                    className="btn btn-danger btn-lg"
-                    onClick={handleLogout}
-                >
-                    Logout
-                </button>
-            </div>
+        
 
             <div className="text-center">
                 <h1 className="display-3 mb-3">Welcome to Meme Word Games!</h1>
@@ -36,6 +29,15 @@ export default function Home() {
                 <p className="lead mb-5">
                     Challenge your meme knowledge with fun word games across different internet eras.
                 </p>
+            </div>
+
+            <div className="d-flex justify-content-center mb-4">
+                <button 
+                    className="btn btn-danger btn-lg"
+                    onClick={handleLogout}
+                >
+                    Logout
+                </button>
             </div>
         </div>
     );
