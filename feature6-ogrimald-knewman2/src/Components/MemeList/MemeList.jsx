@@ -94,8 +94,8 @@ export default function MemeList() {
   });
 
   return (
-    <div className="home-content">
-      <button onClick={handleLogout}>Logout</button>
+    <div className="mt-3 px-3">
+      <button className="btn float-right custom-btn" onClick={handleLogout}>Logout</button>
       <h1>Meme List</h1>
       <p>Listing every meme database entry loaded from back4app. Create new memes with the form below, and they are automatically added to the database.</p>
 

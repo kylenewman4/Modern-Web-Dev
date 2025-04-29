@@ -63,31 +63,30 @@ function Hangman({ maxWrong = 6 }) {
   const alternateText = `${nWrong} wrong guesses`;
 
   return (
-    <div className='Hangman'>
-      <button onClick={handleLogout}>Logout</button>
-      <h1>Hangman</h1>
+    <div className="mt-3 px-3">
+      <button className="btn custom-btn float-right" onClick={handleLogout}>Logout</button>
+      <h1 className="mb-4">Hangman</h1>
       <p>Number Wrong: {nWrong}</p>
 
       {answer === guessedWord().join("") ? (
-        <div>
-          <p>You WIN!</p>
+        <p className="alert alert-success">You WIN!</p>
+      ) : nWrong === maxWrong ? (
+        <div className="alert alert-danger">
+          <p>YOU LOSE</p>
           <p>Correct Word is: {answer}</p>
         </div>
       ) : (
-        nWrong === maxWrong ? (
-          <div>
-            <p>YOU LOSE</p>
-            <p>Correct Word is: {answer}</p>
+        <div>
+          <p className="fs-2">{guessedWord()}</p>
+          <div className="d-flex flex-wrap justify-content-center">
+            {generateButtons()}
           </div>
-        ) : (
-          <div>
-            <p className='Hangman-word'>{guessedWord()}</p>
-            <p className='Hangman-btns'>{generateButtons()}</p>
-          </div>
-        )
+        </div>
       )}
 
-      <button id='reset' onClick={resetGame}>Reset Game</button>
+      <button id="reset" className="btn custom-btn" onClick={resetGame}>
+        Reset Game
+      </button>
     </div>
   );
 }
