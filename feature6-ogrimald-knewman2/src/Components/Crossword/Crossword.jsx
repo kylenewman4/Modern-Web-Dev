@@ -240,7 +240,7 @@ export default function CrosswordGame() {
         <h4>Game ID: {currentGameId}</h4>
         <h4>Score: {score}</h4>
         <p style={{ fontSize: "14px", maxWidth: "400px", color: "#555" }}>
-          Scores are determined by the time taken to finish the crossword from its creation. A submission with ANY mistakes will return a score of 0 when submitted.
+          Scores are determined by the time taken to finish the crossword from its creation. A submission with ANY mistakes will return a score of 0.
         </p>
       </div>
 
