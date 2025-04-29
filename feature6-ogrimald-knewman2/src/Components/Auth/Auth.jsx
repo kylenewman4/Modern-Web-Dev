@@ -16,15 +16,20 @@ const AuthModule = () => {
   }, [navigate]);
 
   return (
-    <div>
-      <Link to="/auth/register">
-        <button>Register</button>
-      </Link>
-      <br />
-      <br />
-      <Link to="/auth/login">
-        <button>Login</button>
-      </Link>
+    <div className="container d-flex flex-column justify-content-center align-items-center mt-5">
+      <h2 className="text-center mb-4">Welcome to Meme Word Games!</h2>
+
+      <div className="d-flex justify-content-around w-50">
+        <Link to="/auth/register" className="w-100">
+          <button className="btn btn-lg btn-primary w-100 mb-3">Register</button>
+        </Link>
+      </div>
+      
+      <div className="d-flex justify-content-around w-50">
+        <Link to="/auth/login" className="w-100">
+          <button className="btn btn-lg btn-secondary w-100">Login</button>
+        </Link>
+      </div>
     </div>
   );
 };

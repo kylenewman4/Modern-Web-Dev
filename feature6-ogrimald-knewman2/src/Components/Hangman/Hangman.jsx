@@ -84,6 +84,7 @@ function Hangman({ maxWrong = 6 }) {
         key={index}
         value={ltr}
         onClick={handleGuess}
+        className="btn btn-outline-secondary m-1"
         disabled={guessed.has(ltr)}
       >
         {ltr}
@@ -98,36 +99,45 @@ function Hangman({ maxWrong = 6 }) {
   }
 
   return (
-    <div className="mt-3 px-3">
-      <button className="btn custom-btn float-right" onClick={handleLogout}>
+    <div className="container mt-5">
+      <button className="btn btn-danger btn-sm float-end mb-4" onClick={handleLogout}>
         Logout
       </button>
-      <h1 className="mb-4">Hangman</h1>
-      <img src={images[nWrong]} className="rounded mx-auto d-block" alt={alternateText} />
-      <p className="text-center">Number Wrong: {nWrong}</p>
 
+      <h1 className="text-center mb-4">Hangman</h1>
+
+      {/* Hangman image */}
+      <div className="text-center">
+        <img src={images[nWrong]} className="img-fluid" alt={alternateText} />
+        <p className="text-center mt-2">Number Wrong: {nWrong}</p>
+      </div>
+
+      {/* Winning or Losing Message */}
       {answer === guessedWord().join("") ? (
         <div className="alert alert-success text-center">
-          <p>YOU WIN!</p>
-          <p>Correct word is: {answer}</p>
+          <p className="fs-4">YOU WIN!</p>
+          <p className="fs-5">Correct word is: {answer}</p>
         </div>
       ) : nWrong === maxWrong ? (
         <div className="alert alert-danger text-center">
-          <p>YOU LOSE</p>
-          <p>Correct word is: {answer}</p>
+          <p className="fs-4">YOU LOSE</p>
+          <p className="fs-5">Correct word is: {answer}</p>
         </div>
       ) : (
-        <div>
-          <p className="hangman-word text-center fs-2">{guessedWord()}</p>
-          <div className="d-flex flex-wrap justify-content-center">
+        <div className="text-center">
+          <p className="hangman-word fs-2">{guessedWord()}</p>
+          <div className="d-flex flex-wrap justify-content-center mb-4">
             {generateButtons()}
           </div>
         </div>
       )}
 
-      <button id="reset" className="btn custom-btn d-block mx-auto mt-3" onClick={resetGame}>
-        Reset Game
-      </button>
+      {/* Reset Button */}
+      <div className="text-center mt-4">
+        <button id="reset" className="btn btn-primary btn-lg" onClick={resetGame}>
+          Reset Game
+        </button>
+      </div>
     </div>
   );
 }

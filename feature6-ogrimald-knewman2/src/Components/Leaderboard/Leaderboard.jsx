@@ -28,13 +28,12 @@ const Leaderboard = () => {
   }
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h2>Leaderboard</h2>
-      <p>(SORTED BY DESCENDING SCORE)</p>
-      <table border="1" style={{ width: "100%", textAlign: "left" }}>
-        <thead>
+    <div className="container mt-4">
+      <h2 className="text-center">Leaderboard (All Games)</h2>
+      <table className="table table-striped table-bordered table-hover">
+        <thead className="thead-dark">
           <tr>
-            <th>Game ID</th> {/* Added Game ID column */}
+            <th>Game ID</th>
             <th>Game Name</th>
             <th>Score</th>
             <th>Created At</th>
@@ -44,15 +43,15 @@ const Leaderboard = () => {
           {games.length > 0 ? (
             games.map((game) => (
               <tr key={game.id}>
-                <td>{game.id}</td> {/* Displaying Game ID */}
+                <td>{game.id}</td>
                 <td>{game.name}</td>
                 <td>{game.score}</td>
-                <td>{game.date ? game.date.toString() : 'N/A'}</td> {/* Display Created At */}
+                <td>{game.date ? game.date.toString() : 'N/A'}</td>
               </tr>
             ))
           ) : (
             <tr>
-              <td colSpan="4">No games found</td> {/* Adjusted colspan to 4 */}
+              <td colSpan="4">No games found</td>
             </tr>
           )}
         </tbody>

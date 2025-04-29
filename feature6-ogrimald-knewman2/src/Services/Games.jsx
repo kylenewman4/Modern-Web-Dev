@@ -21,6 +21,7 @@ export function getAllGames() {
   
         return {
           id: game.id,
+          date: game.get("createdAt"),
           name: game.get("name"),
           score: game.get("score"),
           solution: meme ? {

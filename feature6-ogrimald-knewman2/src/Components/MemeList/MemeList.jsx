@@ -7,11 +7,12 @@ import { useNavigate } from "react-router-dom";
 
 export default function MemeList() {
   const [memes, setMemes] = useState([]);
-  const [selectedEra, setSelectedEra] = useState("");   // For era filtering
-  const [eras, setEras] = useState([]);                 // List of available eras
+  const [selectedEra, setSelectedEra] = useState(""); // For era filtering
+  const [eras, setEras] = useState([]); // List of available eras
   const [selectedSource, setSelectedSource] = useState(""); // For source filtering
 
   const navigate = useNavigate();
+  
   // Logout button logic -- log out user and redirect them to auth
   const handleLogout = async () => {
     try {
@@ -23,7 +24,6 @@ export default function MemeList() {
     }
   };
 
-  // get memes when the component mounts
   useEffect(() => {
     fetchMemes();
   }, [selectedEra]); // refetch memes when user selects a different era
@@ -32,16 +32,13 @@ export default function MemeList() {
     fetchEras();
   }, []);
 
-  // fetch all memes or memes filtered by era
   async function fetchMemes() {
     try {
       const Meme = Parse.Object.extend("Meme");
       const query = new Parse.Query(Meme);
-
       if (selectedEra) {
         query.equalTo("era", selectedEra);
       }
-
       const results = await query.find();
       const memesData = results.map(meme => ({
         id: meme.id,
@@ -49,20 +46,17 @@ export default function MemeList() {
         era: meme.get("era"),
         url: meme.get("url"),
       }));
-
       setMemes(memesData);
     } catch (error) {
       console.error("Error fetching memes:", error);
     }
   }
 
-  // fetch unique eras for dropdown
   async function fetchEras() {
     try {
       const Meme = Parse.Object.extend("Meme");
       const query = new Parse.Query(Meme);
       const results = await query.find();
-
       const uniqueEras = Array.from(new Set(results.map(meme => meme.get("era"))));
       setEras(uniqueEras);
     } catch (error) {
@@ -70,22 +64,18 @@ export default function MemeList() {
     }
   }
 
-  // add a new meme (called from the NewMeme child component)
   const handleAddMeme = async (name, era, url) => {
     try {
-      // create meme object for new name
       await createMeme(name, era, url);
-      await fetchMemes(); // refetch memes after adding a new one
-      await fetchEras(); // update era list in case a new one was added
+      await fetchMemes();
+      await fetchEras();
     } catch (error) {
       console.error("Error creating meme:", error);
     }
   };
 
-  // filter memes by source
   const filteredMemes = memes.filter(meme => {
     if (!selectedSource) return true;
-
     const url = meme.url.toLowerCase();
     if (selectedSource === "youtube" && url.includes("youtube")) return true;
     if (selectedSource === "knowyourmeme" && url.includes("knowyourmeme")) return true;
@@ -94,48 +84,58 @@ export default function MemeList() {
   });
 
   return (
-    <div className="mt-3 px-3">
-      <button className="btn float-right custom-btn" onClick={handleLogout}>Logout</button>
-      <h1>Meme List</h1>
-      <p>Listing every meme database entry loaded from back4app. Create new memes with the form below, and they are automatically added to the database.</p>
+    <div className="container mt-5 px-3">
+      <button className="btn btn-danger float-right mb-4" onClick={handleLogout}>Logout</button>
+      
+      <h1 className="text-center mb-4">Meme List</h1>
+      <p className="text-center mb-4">
+        Listing every meme database entry loaded from back4app. Create new memes with the form below, and they are automatically added to the database.
+      </p>
 
       <NewMeme onAddMeme={handleAddMeme} />
 
       {/* Filters Section */}
-      <div style={{ marginTop: "20px", marginBottom: "20px" }}>
-        <label style={{ marginRight: "10px" }}>
-          Filter by Era:
+      <div className="d-flex justify-content-between mb-4">
+        <div>
+          <label className="mr-3">Filter by Era:</label>
           <select
             value={selectedEra}
             onChange={(e) => setSelectedEra(e.target.value)}
-            style={{ marginLeft: "5px" }}
+            className="form-control"
+            style={{ width: "200px" }}
           >
             <option value="">All Eras</option>
             {eras.map((era, index) => (
               <option key={index} value={era}>{era}</option>
             ))}
           </select>
-        </label>
+        </div>
 
-        <label style={{ marginLeft: "20px" }}>
-          Filter by Source:
+        <div>
+          <label className="mr-3">Filter by Source:</label>
           <select
             value={selectedSource}
             onChange={(e) => setSelectedSource(e.target.value)}
-            style={{ marginLeft: "5px" }}
+            className="form-control"
+            style={{ width: "200px" }}
           >
             <option value="">All Sources</option>
             <option value="youtube">YouTube</option>
             <option value="knowyourmeme">KnowYourMeme</option>
             <option value="other">Other</option>
           </select>
-        </label>
+        </div>
       </div>
 
-      <h2>Existing Memes</h2>
-      <div>
+      {/* Meme Entries */}
+      <h2 className="text-center mb-4">Existing Memes</h2>
+      <div className="row">
         {filteredMemes.length > 0 ? (
-          filteredMemes.map((meme) => <MemeEntry key={meme.id} meme={meme} />)
+          filteredMemes.map((meme) => (
+            <div className="col-lg-4 col-md-6 mb-4" key={meme.id}>
+              <MemeEntry meme={meme} />
+            </div>
+          ))
         ) : (
           <p>No memes match the selected filters.</p>
         )}

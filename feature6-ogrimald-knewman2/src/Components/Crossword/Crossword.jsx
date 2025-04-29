@@ -233,41 +233,45 @@ export default function CrosswordGame() {
     if (error) return <p style={{ color: "red" }}>{error}</p>;
   
     return (
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-          <h2>{playerName ? `${playerName}'s Crossword` : "Crossword Game"}</h2>
-    
-          <div style={{ marginBottom: "20px", textAlign: "center" }}>
-            <h4>Game ID: {currentGameId}</h4>
-            <h4>Score: {score}</h4>
-            <p style={{ fontSize: "14px", maxWidth: "400px", color: "#555" }}>
+        <div className="container mt-5">
+          <div className="text-center mb-4">
+            <h2>{playerName ? `${playerName}'s Crossword` : "Crossword Game"}</h2>
+            <div className="mb-3">
+              <h4>Game ID: {currentGameId}</h4>
+              <h4>Score: {score}</h4>
+            </div>
+            <p className="lead text-muted">
               Scores are determined by the time taken to finish the crossword from its creation. A submission with ANY mistakes will return a score of 0.
             </p>
-            <p style={{ fontSize: "14px", maxWidth: "400px", color: "#555" }}>
-                Word clues are a scrambled version of the word.
+            <p className="text-muted mb-4">
+              Word clues are a scrambled version of the word.
             </p>
           </div>
     
-          <button onClick={startNewGame} style={{ marginTop: "20px", padding: "10px 20px", fontSize: "16px" }}>
-            Start New Game
-          </button>
+          {/* New Game Button */}
+          <div className="text-center mb-4">
+            <button className="btn btn-primary btn-lg" onClick={startNewGame}>
+              Start New Game
+            </button>
+          </div>
     
-          {/* Flex Container for Clues and Game Board */}
-          <div style={{ display: "flex", justifyContent: "space-between", width: "100%", maxWidth: "1200px", marginTop: "30px" }}>
-            
-    
-            {/* Game Board Section */}
-            <div style={{ flex: 2, display: "flex", justifyContent: "center" }}>
+          {/* Game Board and Clue Section */}
+          <div className="row justify-content-center mb-4">
+            <div className="col-12 col-md-8">
               {crosswordData && (
-                <div style={{ width: "500px" }}>
+                <div className="d-flex justify-content-center">
                   <Crossword ref={crosswordRef} data={crosswordData} />
                 </div>
               )}
             </div>
           </div>
     
-          <button onClick={handleSubmit} style={{ marginTop: "20px", padding: "10px 20px", fontSize: "16px" }}>
-            Submit Crossword
-          </button>
+          {/* Submit Button */}
+          <div className="text-center mb-4">
+            <button className="btn btn-secondary btn-lg" onClick={handleSubmit}>
+              Submit Crossword
+            </button>
+          </div>
         </div>
       );
     }
