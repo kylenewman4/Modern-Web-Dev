@@ -5,6 +5,24 @@ All notable changes to our Meme Word Games project will be updated in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.4.0] - 2025-05-03
+  
+Added all user stories for Feature 6.
+ 
+### Added
+- Hangman and crossword games implemented and connected to back4app database
+- Added filtering for memes in database by era and source
+- Styled new modules (games, leaderboard)
+- Global leaderboard implemented to see all users' games and scores
+
+### Changed
+  
+- Updated README.md
+- Updated styling for existing modules
+ 
+### Fixed
+
+
 ## [0.3.0] - 2025-04-02
   
 Added all components for Feature 5.
