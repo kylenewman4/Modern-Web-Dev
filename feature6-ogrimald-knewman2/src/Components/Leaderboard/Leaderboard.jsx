@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getAllGames } from "../../Services/Games.jsx"; // Import the Games service
+import { getAllGames } from "../../Services/Games.jsx";
 import { useNavigate } from "react-router-dom";
 import Parse from "parse";
 

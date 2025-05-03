@@ -20,7 +20,7 @@ export default function GameList() {
     }
   };
 
-  //fetch games when the component mounts
+  // fetch games when the component mounts
   useEffect(() => {
     async function fetchGames() {
       try {
@@ -33,7 +33,7 @@ export default function GameList() {
     fetchGames();
   }, []);
 
-  //function to add a new game (called from the NewGame child component)
+  // function to add a new game (called from the NewGame child component)
   const handleAddGame = async (name, score, memeBank) => {
     try {
       // Create game using the service function

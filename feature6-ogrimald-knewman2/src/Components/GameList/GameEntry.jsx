@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function GameEntry({ game }) {
-  //ensure solution is defined (in case it's undefined)
+  // ensure solution is defined (in case it's undefined)
   const meme = game.solution || null; 
 
   return (

@@ -6,7 +6,13 @@ export default function MemeEntry({ meme }) {
       <div className="card-body">
         <h5 className="card-title">{meme.name}</h5>
         <p className="card-text"><strong>Era:</strong> {meme.era}</p>
-        <p className="card-text"><strong>URL:</strong> <a href={meme.url} target="_blank" rel="noopener noreferrer">{meme.url}</a></p>
+        <p className="card-text"><strong>Clue:</strong> {meme.clue || "No clue provided"}</p> {/* ✅ ADD CLUE */}
+        <p className="card-text">
+          <strong>URL:</strong>{" "}
+          <a href={meme.url} target="_blank" rel="noopener noreferrer">
+            {meme.url}
+          </a>
+        </p>
       </div>
     </div>
   );

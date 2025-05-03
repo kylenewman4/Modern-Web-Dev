@@ -18,9 +18,6 @@ export default function Home() {
 
     return (
         <div className="container mt-5">
-            {/* Center the Logout button */}
-        
-
             <div className="text-center">
                 <h1 className="display-3 mb-3">Welcome to Meme Word Games!</h1>
                 <h3 className="mb-3 text-muted">

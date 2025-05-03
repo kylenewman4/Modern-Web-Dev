@@ -9,15 +9,15 @@ const Env = {
 Parse.initialize(Env.APPLICATION_ID, Env.JAVASCRIPT_KEY);
 Parse.serverURL = Env.SERVER_URL;
 
-//get all games along with their associated meme (solution)
+// get all games along with their associated meme (solution)
 export function getAllGames() {
     const game = Parse.Object.extend("Game");
     const query = new Parse.Query(game);
-    query.include("solution"); //makes sure the 'solution' pointer is resolved to the actual Meme object
+    query.include("solution"); // makes sure the 'solution' pointer is resolved to the actual Meme object
     
     return query.find().then((results) => {
       return results.map((game) => {
-        const meme = game.get("solution"); //returns Meme object from pointer
+        const meme = game.get("solution"); // returns Meme object from pointer
   
         return {
           id: game.id,
@@ -28,6 +28,7 @@ export function getAllGames() {
             id: meme.id,
             name: meme.get("name"),
             era: meme.get("era"),
+            clue: meme.get("clue")
           } : null,
         };
       });
@@ -41,10 +42,10 @@ export function getAllGames() {
     game.set("name", name);
     game.set("score", score);
     
-    //convert the selected meme to a Parse Object pointer
+    // convert the selected meme to a Parse Object pointer
     const memePointer = meme instanceof Parse.Object ? meme.toPointer() : Parse.Object.extend("Meme").createWithoutData(meme.id).toPointer();
     
-    //set the solution field with the meme pointer
+    // set the solution field with the meme pointer
     game.set("solution", memePointer);
     
     try {
