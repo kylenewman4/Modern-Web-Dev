@@ -11,6 +11,7 @@ Added all user stories for Feature 6.
  
 ### Added
 - Hangman and crossword games implemented and connected to back4app database
+- Added clues for memes
 - Added filtering for memes in database by era and source
 - Styled new modules (games, leaderboard)
 - Global leaderboard implemented to see all users' games and scores
@@ -19,6 +20,7 @@ Added all user stories for Feature 6.
   
 - Updated README.md
 - Updated styling for existing modules
+- Updated Memes service, list, and current entries with clues
  
 ### Fixed
 
