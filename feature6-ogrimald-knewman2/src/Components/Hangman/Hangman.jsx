@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Parse from "parse";
+import { createGame } from "../../Services/Games.jsx";
 
 import img0 from "../../images/0.jpg";
 import img1 from "../../images/1.jpg";
@@ -12,9 +13,14 @@ import img6 from "../../images/6.jpg";
 
 function Hangman({ maxWrong = 6 }) {
   const [nWrong, setNWrong] = useState(0);
-  const [guessed, setGuessed] = useState(new Set());
-  const [answer, setAnswer] = useState("");
+  const [guessed, setGuessed] = useState(new Set()); // guessed letters
+  const [answer, setAnswer] = useState(""); // selected random meme
   const [loading, setLoading] = useState(true);
+  const [currentGameId, setCurrentGameId] = useState(null);
+  const [score, setScore] = useState(0);
+  const [startTime, setStartTime] = useState(null); // Track the start time
+  const [playerName, setPlayerName] = useState(""); // Track the signed-in player's name
+  const [gameStarted, setGameStarted] = useState(false);
 
   const images = [img0, img1, img2, img3, img4, img5, img6];
   const navigate = useNavigate();
@@ -31,7 +37,17 @@ function Hangman({ maxWrong = 6 }) {
       query.limit(1);
       const results = await query.find();
       const meme = results[0];
+
+      // For game object in database
+      const user = Parse.User.current();
+      const username = user ? user.get("username") : "Player";  // Default to "Player" if not signed in
+      const createdGame = await createGame(`${username}'s Hangman`, "0", meme);
+      setCurrentGameId(createdGame.id);
+      // Set the start time when the game starts
+      setStartTime(Date.now());
+
       setAnswer(meme.get("name").toLowerCase());
+      setGameStarted(true);
     } catch (err) {
       console.error("Error fetching meme:", err);
       setAnswer("default word");
@@ -48,7 +64,16 @@ function Hangman({ maxWrong = 6 }) {
     setNWrong(0);
     setGuessed(new Set());
     fetchRandomMeme();
+    setScore(0);
   };
+
+  // Fetch the signed-in player's name (e.g., using Parse)
+  useEffect(() => {
+    const user = Parse.User.current();
+    if (user) {
+      setPlayerName(user.get("username")); // Or any other field that contains the name
+    }
+  }, []);
 
   // Logout button logic -- log out user and redirect them to auth
   const handleLogout = async () => {
@@ -76,7 +101,7 @@ function Hangman({ maxWrong = 6 }) {
       setNWrong((prev) => prev + 1);
     }
   };
-
+  
   // the buttons of letters for the user 
   const generateButtons = () => {
     return "abcdefghijklmnopqrstuvwxyz".split("").map((ltr, index) => (
@@ -92,6 +117,41 @@ function Hangman({ maxWrong = 6 }) {
     ));
   };
 
+  // submitting your score to database / leaderboard once finished
+  const handleSubmit = async () => {
+    let score = 0;
+    if (answer === guessedWord().join("")) {
+      // Start with full score if the hangman is correct
+      score = 100;
+  
+      const endTime = Date.now();
+      const timeTaken = (endTime - startTime) / 1000;
+      const timePenalty = Math.floor(timeTaken / 10) * 5;
+      score = Math.max(0, score - timePenalty);
+  
+      console.log("Game over! Final score:", score);
+    }
+    // else incorrect, so maintain score of 0
+    else if (nWrong === maxWrong) {
+      console.log("Game over! Final score:", score);
+    }
+    // Save the score to the database
+    try {
+      const Game = Parse.Object.extend("Game");
+      const query = new Parse.Query(Game);
+      const game = await query.get(currentGameId);
+
+      game.set("score", score.toString());
+      await game.save();
+
+      setScore(score);
+      alert(`Crossword submitted! Your score: ${score}`);
+    } catch (err) {
+      console.error(err);
+      alert("Error updating game score");
+    }
+  }
+
   const alternateText = `${nWrong} wrong guesses`;
 
   if (loading) {
@@ -105,7 +165,17 @@ function Hangman({ maxWrong = 6 }) {
       </button>
 
       <h1>Hangman</h1>
-
+      <div className="text-center mb-4">
+        <h2>{playerName ? `${playerName}'s Hangman` : "Hangman Game"}</h2>
+        <div className="mb-3">
+          <h4>Game ID: {currentGameId}</h4>
+          <h4>Score: {score}</h4>
+        </div>
+        <p className="lead text-muted">
+          Scores are determined by the time taken to finish the hangman from its creation. Reaching the max guesses without getting the word will return a score of 0.
+        </p>
+      </div>
+      
       {/* Hangman image */}
       <div className="text-center">
         <img src={images[nWrong]} className="img-fluid" alt={alternateText} />
@@ -132,6 +202,12 @@ function Hangman({ maxWrong = 6 }) {
         </div>
       )}
 
+      {/* Submit Button */}
+      <div className="text-center mb-4">
+        <button className="btn btn-secondary btn-lg" onClick={handleSubmit}>
+          Submit Hangman
+        </button>
+      </div>
       {/* Reset Button */}
       <div className="text-center mt-4">
         <button id="reset" className="btn btn-primary btn-lg" onClick={resetGame}>
